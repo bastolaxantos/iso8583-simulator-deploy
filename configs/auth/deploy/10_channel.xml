@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channel-adaptor class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2" name="adaptor">
+  <channel class="org.jpos.iso.channel.NACChannel" logger="Q2"
+    packager="org.jpos.iso.packager.GenericPackager">
+    <property name="packager-config" value="cfg/packager/iso87ascii-binary-bitmap.xml"/>
+    <property name="host" value="host.docker.internal"/>
+    <property name="port" value="7104"/>
+    <property name="timeout" value="0"/>
+  </channel>
+  <in>out-queue</in>
+  <keep-alive>true</keep-alive>
+  <out>in-queue</out>
+  <reconnect-delay>10000</reconnect-delay>
+</channel-adaptor>

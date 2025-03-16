@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  switch_simulator:
+    image: bastolaxantos/iso8583_switch_simulator
+    container_name: switch_simulator
+    environment:
+      - SPRING_CONFIG_LOCATION=/config/application.yml
+    volumes:
+      - ./configs/switch/application.yml:/config/application.yml
+    ports:
+      - "8081:8081"
+    networks:
+      - iso8583_network
+
+  auth_simulator:
+    image: bastolaxantos/iso8583_auth_simulator
+    container_name: auth_simulator
+    environment:
+      - SPRING_CONFIG_LOCATION=/config/application.yml
+    volumes:
+      - ./configs/auth/application.yml:/config/application.yml
+      - ./configs/auth/cfg/*:/config/cfg/*
+      - ./configs/auth/deploy/*:/config/deploy/*
+    networks:
+      - iso8583_network
+
+  db:
+    image: postgres
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: iso8583db
+    networks:
+      - iso8583_network
+
+networks:
+  iso8583_network:
+    driver: bridge

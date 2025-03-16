@@ -1,0 +1,7 @@
+<mux class="org.jpos.q2.iso.QMUX" logger="Q2" name="my-mux">
+  <in>in-queue</in>
+  <out>out-queue</out>
+  <request-listener class="com.simul8pay.iso8583_auth_simulator.TransactionRequestListener"
+    logger="Q2"/>
+  <unhandled>unhandled-queue</unhandled>
+</mux>

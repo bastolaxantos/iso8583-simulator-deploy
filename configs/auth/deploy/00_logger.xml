@@ -1,0 +1,7 @@
+<logger class="org.jpos.q2.qbean.LoggerAdaptor" name="Q2">
+  <log-listener class="org.jpos.util.SimpleLogListener">
+    <property name="protect" value="2 35 45 49.2 55"/>
+    <property name="wipe" value="48"/>
+  </log-listener>
+  <log-listener class="org.jpos.util.SimpleLogListener"/>
+</logger>
