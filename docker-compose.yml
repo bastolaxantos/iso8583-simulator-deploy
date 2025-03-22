@@ -13,6 +13,16 @@ services:
     networks:
       - iso8583_network
 
+  switch_simulator_ui:
+    image: bastolaxantos/iso8583_switch_simulator_ui
+    container_name: switch_simulator_ui
+    environment:
+      - REACT_APP_API_URL=http://switch_simulator:8081
+    ports:
+      - "3100:3000"
+    networks:
+      - iso8583_network
+
   auth_simulator:
     image: bastolaxantos/iso8583_auth_simulator
     container_name: auth_simulator
@@ -20,8 +30,8 @@ services:
       - SPRING_CONFIG_LOCATION=/config/application.yml
     volumes:
       - ./configs/auth/application.yml:/config/application.yml
-      - ./configs/auth/cfg/*:/config/cfg/*
-      - ./configs/auth/deploy/*:/config/deploy/*
+      - ./configs/auth/cfg:/config/cfg
+      - ./configs/auth/deploy:/config/deploy
     networks:
       - iso8583_network
 
